@@ -4,6 +4,7 @@ import {
   Route,
   Routes,
   useLocation,
+  useNavigate,
 } from "react-router-dom";
 
 import "./App.css";
@@ -15,9 +16,10 @@ import FloatingWidget from "./games/FloatingWidget";
 
 function Thumbnail() {
   const location = useLocation();
+  const navigate = useNavigate();
 
-  function tilegame() {
-    window.location.href = "http://localhost:3000/tile-game";
+  function handleTileGameRedirect() {
+    navigate("/tile-game");
   }
   return (
     <>
@@ -25,7 +27,7 @@ function Thumbnail() {
         <div className="thumbnail-container">
           <img
             src="https://i.pinimg.com/736x/78/ec/2d/78ec2d2ab3f94458cc857260efa32b10.jpg"
-            onClick={tilegame}
+            onClick={handleTileGameRedirect}
             alt="Tiles Game"
           />
         </div>
@@ -48,8 +50,6 @@ function App() {
         </Routes>
         <Thumbnail />
       </Router>
-
-
     </div>
   );
 }
