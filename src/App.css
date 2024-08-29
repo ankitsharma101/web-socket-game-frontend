@@ -36,6 +36,7 @@
     transform: rotate(360deg);
   }
 }
+<<<<<<< HEAD
 
 .thumbnail-container {
   width: 200px; /* You can set a specific width like 200px */
@@ -57,3 +58,5 @@
   width: 200px;
   height: auto;
 }
+=======
+>>>>>>> 5673b7d367d34615bf0f6157306f0cfd927d87a4
