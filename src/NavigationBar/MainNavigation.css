@@ -1,0 +1,22 @@
+.nav-bar {
+  margin-left: auto; /* Pushes the content to the far right */
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar img.avatar {
+  width: 50px; /* Adjust size as needed */
+  height: 50px; /* Ensures the image is square */
+  border-radius: 50%; /* Makes the image a circle */
+  object-fit: cover; /* Ensures the image covers the entire area */
+  cursor: pointer; /* Optional: adds a pointer cursor */
+  margin-left: 10px; /* Optional: space between the button and the image */
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
