@@ -4,21 +4,21 @@ import { Link } from "react-router-dom";
 import "./MainNavigation.css";
 
 const handleLogin = () => {
-  window.location.href = "http://localhost:5000/auth/google";
+  window.location.href = `${process.env.BACKEND_URL}/auth/google`;
 };
 
 const handleLogout = () => {
-  window.location.href = "http://localhost:5000/auth/logout";
+  window.location.href = `${process.env.BACKEND_URL}/auth/logout`;
 };
 
 function profilepage() {
-  window.location.href = "http://localhost:3000/profile";
+  window.location.href = `${process.env.FRONTEND_URL}/profile`;
 }
 
 const MainNavigation = () => {
   const [user, setUser] = useState(null);
   useEffect(() => {
-    fetch("http://localhost:5000/auth/current_user", {
+    fetch(`${process.env.BACKEND_URL}/auth/current_user`, {
       credentials: "include", // To include cookies in the request
     })
       .then((response) => response.json())
