@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./MainNavigation.css";
 
 const handleLogin = () => {
-  window.location.href = `/auth/google`; // Ensure this matches your backend route
+  window.location.href = `${process.env.BACKEND_URL}/auth/google` // Ensure this matches your backend route
 };
 
 const handleLogout = () => {
