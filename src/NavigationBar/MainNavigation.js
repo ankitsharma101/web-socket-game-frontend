@@ -4,21 +4,21 @@ import { Link } from "react-router-dom";
 import "./MainNavigation.css";
 
 const handleLogin = () => {
-  window.location.href = `${process.env.BACKEND_URL}/auth/google`;
+  window.location.href = `/auth/google`;
 };
 
 const handleLogout = () => {
-  window.location.href = `${process.env.BACKEND_URL}/auth/logout`;
+  window.location.href = `/auth/logout`;
 };
 
 function profilepage() {
-  window.location.href = `${process.env.FRONTEND_URL}/profile`;
+  window.location.href = `/profile`;
 }
 
 const MainNavigation = () => {
   const [user, setUser] = useState(null);
   useEffect(() => {
-    fetch(`${process.env.BACKEND_URL}/auth/current_user`, {
+    fetch(`/auth/current_user`, {
       credentials: "include", // To include cookies in the request
     })
       .then((response) => response.json())
