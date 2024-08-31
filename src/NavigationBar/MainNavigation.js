@@ -3,22 +3,25 @@ import { Link } from "react-router-dom";
 
 import "./MainNavigation.css";
 
+const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:5000";
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
+
 const handleLogin = () => {
-  window.location.href = `${process.env.BACKEND_URL}/auth/google`; // Ensure this matches your backend route
+  window.location.href = `${BACKEND_URL}/auth/google`;
 };
 
 const handleLogout = () => {
-  window.location.href = `${process.env.BACKEND_URL}/auth/logout`;
+  window.location.href = `${BACKEND_URL}/auth/logout`;
 };
 
 function profilepage() {
-  window.location.href = `/profile`;
+  window.location.href = `${FRONTEND_URL}/profile`;
 }
 
 const MainNavigation = () => {
   const [user, setUser] = useState(null);
   useEffect(() => {
-    fetch(`${process.env.BACKEND_URL}/auth/current_user`, {
+    fetch(`${BACKEND_URL}/auth/current_user`, {
       credentials: "include", // To include cookies in the request
     })
       .then((response) => response.json())
@@ -26,9 +29,9 @@ const MainNavigation = () => {
         if (data) {
           setUser(data);
         }
-      })
-      .catch((error) => console.error("Error fetching user data:", error)); // Handle fetch error
+      });
   }, []);
+
   return (
     <nav style={styles.navbar}>
       <ul style={styles.navList}>

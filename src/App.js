@@ -4,7 +4,6 @@ import {
   Route,
   Routes,
   useLocation,
-  useNavigate,
 } from "react-router-dom";
 
 import "./App.css";
@@ -16,10 +15,9 @@ import FloatingWidget from "./games/FloatingWidget";
 
 function Thumbnail() {
   const location = useLocation();
-  const navigate = useNavigate();
 
-  function handleTileGameRedirect() {
-    navigate("/tile-game");
+  function tilegame() {
+    window.location.href = "http://localhost:3000/tile-game";
   }
   return (
     <>
@@ -27,7 +25,7 @@ function Thumbnail() {
         <div className="thumbnail-container">
           <img
             src="https://i.pinimg.com/736x/78/ec/2d/78ec2d2ab3f94458cc857260efa32b10.jpg"
-            onClick={handleTileGameRedirect}
+            onClick={tilegame}
             alt="Tiles Game"
           />
         </div>
@@ -38,6 +36,18 @@ function Thumbnail() {
 
 function App() {
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/auth/current_user", {
+      credentials: "include", // To include cookies in the request
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          setUser(data);
+        }
+      });
+  }, []);
 
   return (
     <div>
