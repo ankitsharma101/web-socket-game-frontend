@@ -13,11 +13,14 @@ import Login from "./pages/Login";
 import TilesGame from "./games/TilesGame";
 import FloatingWidget from "./games/FloatingWidget";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+const FRONTEND_URL = process.env.REACT_APP_FRONTEND_URL || "http://localhost:3000";
+
 function Thumbnail() {
   const location = useLocation();
 
   function tilegame() {
-    window.location.href = "http://localhost:3000/tile-game";
+    window.location.href = `${FRONTEND_URL}/tile-game`;
   }
   return (
     <>
@@ -38,7 +41,7 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/auth/current_user", {
+    fetch(`${BACKEND_URL}/auth/current_user`, {
       credentials: "include", // To include cookies in the request
     })
       .then((response) => response.json())

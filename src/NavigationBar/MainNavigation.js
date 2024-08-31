@@ -1,35 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { login, logout, getCurrentUser } from '../auth'; // Adjust path if needed
+
 
 import "./MainNavigation.css";
 
-const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:5000";
-const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
-
-const handleLogin = () => {
-  window.location.href = `${BACKEND_URL}/auth/google`;
-};
-
-const handleLogout = () => {
-  window.location.href = `${BACKEND_URL}/auth/logout`;
-};
-
-function profilepage() {
-  window.location.href = `${FRONTEND_URL}/profile`;
-}
+//const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+const FRONTEND_URL = process.env.REACT_APP_FRONTEND_URL || "http://localhost:3000";
 
 const MainNavigation = () => {
   const [user, setUser] = useState(null);
+
   useEffect(() => {
-    fetch(`${BACKEND_URL}/auth/current_user`, {
-      credentials: "include", // To include cookies in the request
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data) {
-          setUser(data);
-        }
-      });
+    const fetchUser = async () => {
+      const currentUser = await getCurrentUser();
+      setUser(currentUser);
+    };
+
+    fetchUser();
   }, []);
 
   return (
@@ -37,10 +25,10 @@ const MainNavigation = () => {
       <ul style={styles.navList}>
         {user ? (
           <div className="nav-bar">
-            <button onClick={handleLogout}>Logout</button>
+            <button onClick={logout}>Logout</button>
             <Link to="/" style={styles.link}>
               <img
-                onClick={profilepage}
+                onClick={() => window.location.href = `${FRONTEND_URL}/profile`} // Redirect to profile page
                 src={user.avatar}
                 alt="avatar"
                 className="avatar"
@@ -48,7 +36,7 @@ const MainNavigation = () => {
             </Link>
           </div>
         ) : (
-          <button onClick={handleLogin}>Login with Google</button>
+          <button onClick={() => login()}>Login with Google</button>
         )}
       </ul>
     </nav>
@@ -59,7 +47,7 @@ const styles = {
   navbar: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center", // Vertically center the items
+    alignItems: "center",
     padding: "10px 20px",
     backgroundColor: "#7C00FE",
     color: "#fff",
