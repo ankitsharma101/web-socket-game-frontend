@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import "./MainNavigation.css";
 
 const handleLogin = () => {
-  window.location.href = `${process.env.BACKEND_URL}/auth/google` // Ensure this matches your backend route
+  window.location.href = `${process.env.BACKEND_URL}/auth/google`; // Ensure this matches your backend route
 };
 
 const handleLogout = () => {
-  window.location.href = `/auth/logout`;
+  window.location.href = `${process.env.BACKEND_URL}/auth/logout`;
 };
 
 function profilepage() {
@@ -18,7 +18,7 @@ function profilepage() {
 const MainNavigation = () => {
   const [user, setUser] = useState(null);
   useEffect(() => {
-    fetch(`/auth/current_user`, {
+    fetch(`${process.env.BACKEND_URL}/auth/current_user`, {
       credentials: "include", // To include cookies in the request
     })
       .then((response) => response.json())
@@ -26,23 +26,29 @@ const MainNavigation = () => {
         if (data) {
           setUser(data);
         }
-      });
+      })
+      .catch((error) => console.error("Error fetching user data:", error)); // Handle fetch error
   }, []);
   return (
     <nav style={styles.navbar}>
-  <ul style={styles.navList}>
-    {user ? (
-      <div className="nav-bar">
-        <button onClick={handleLogout}>Logout</button>
-        <Link to="/" style={styles.link}>
-          <img onClick={profilepage} src={user.avatar} alt="avatar" className="avatar" />
-        </Link>
-      </div>
-    ) : (
-      <button onClick={handleLogin}>Login with Google</button>
-    )}
-  </ul>
-</nav>
+      <ul style={styles.navList}>
+        {user ? (
+          <div className="nav-bar">
+            <button onClick={handleLogout}>Logout</button>
+            <Link to="/" style={styles.link}>
+              <img
+                onClick={profilepage}
+                src={user.avatar}
+                alt="avatar"
+                className="avatar"
+              />
+            </Link>
+          </div>
+        ) : (
+          <button onClick={handleLogin}>Login with Google</button>
+        )}
+      </ul>
+    </nav>
   );
 };
 
@@ -63,7 +69,7 @@ const styles = {
     width: "100%",
     display: "flex",
     justifyContent: "flex-end",
-  }
+  },
 };
 
 export default MainNavigation;
