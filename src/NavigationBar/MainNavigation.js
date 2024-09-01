@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { login, logout, getCurrentUser } from '../auth'; // Adjust path if needed
-
+import { login, logout, getCurrentUser } from "../auth"; // Adjust path if needed
 
 import "./MainNavigation.css";
 
 //const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
-const FRONTEND_URL = process.env.REACT_APP_FRONTEND_URL || "http://localhost:3000";
+const FRONTEND_URL =
+  process.env.REACT_APP_FRONTEND_URL || "http://localhost:3000";
+const BACKEND_URL =
+  process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 
 const MainNavigation = () => {
   const [user, setUser] = useState(null);
@@ -28,7 +30,9 @@ const MainNavigation = () => {
             <button onClick={logout}>Logout</button>
             <Link to="/" style={styles.link}>
               <img
-                onClick={() => window.location.href = `${FRONTEND_URL}/profile`} // Redirect to profile page
+                onClick={() =>
+                  (window.location.href = `${FRONTEND_URL}/profile`)
+                } // Redirect to profile page
                 src={user.avatar}
                 alt="avatar"
                 className="avatar"
