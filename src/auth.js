@@ -3,7 +3,7 @@ const BACKEND_URL =
   process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 
 export const login = () => {
-  window.location.href = `${BACKEND_URL}/auth/google`;
+  window.location.href = `https://web-socket-game-backend.vercel.app/auth/google`;
 };
 
 export const logout = () => {
