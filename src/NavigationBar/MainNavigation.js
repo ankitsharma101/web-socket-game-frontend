@@ -7,8 +7,6 @@ import "./MainNavigation.css";
 //const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 const FRONTEND_URL =
   process.env.REACT_APP_FRONTEND_URL || "http://localhost:3000";
-const BACKEND_URL =
-  process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 
 const MainNavigation = () => {
   const [user, setUser] = useState(null);
