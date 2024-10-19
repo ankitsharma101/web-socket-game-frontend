@@ -9,7 +9,7 @@ const TilesGame = () => {
   const handleNewGame = () => {
     setShowWaiting(true);
   };
-  
+
   useEffect(() => {
     let clientId = null;
     let gameId = null;
@@ -49,13 +49,13 @@ const TilesGame = () => {
       try {
         // Attempt to parse the incoming message data as JSON
         const response = JSON.parse(message.data);
-    
+
         // Handle the response based on the method
         if (response.method === "connect") {
           clientId = response.clientId;
           console.log("Client ID set successfully: " + clientId);
         }
-    
+
         if (response.method === "create") {
           gameId = response.game.id;
           console.log(
@@ -66,7 +66,7 @@ const TilesGame = () => {
               " balls"
           );
         }
-    
+
         if (response.method === "update") {
           if (!response.game.state) return;
           for (const b of Object.keys(response.game.state)) {
@@ -75,25 +75,25 @@ const TilesGame = () => {
             ballObject.style.backgroundColor = color;
           }
         }
-    
+
         if (response.method === "join") {
           const game = response.game;
-    
+
           while (divPlayers.firstChild)
             divPlayers.removeChild(divPlayers.firstChild);
-    
+
           game.clients.forEach((c) => {
             const d = document.createElement("div");
             d.style.width = "200px";
             d.style.background = c.color;
             d.textContent = c.clientId;
             divPlayers.appendChild(d);
-    
+
             if (c.clientId === clientId) playerColor = c.color;
           });
-    
+
           while (divBoard.firstChild) divBoard.removeChild(divBoard.firstChild);
-    
+
           for (let i = 0; i < game.balls; i++) {
             const b = document.createElement("button");
             b.id = "ball" + (i + 1);
@@ -121,14 +121,14 @@ const TilesGame = () => {
         console.error("Received message data:", message.data);
       }
     };
-    
-    
   }, []);
 
   return (
     <div className="the-game">
       <h1>Ball Game</h1>
-      <button id="btnCreate" onClick={handleNewGame}>New Game</button>
+      <button id="btnCreate" onClick={handleNewGame}>
+        New Game
+      </button>
       <button id="btnJoin">Join Game</button>
       <input type="text" id="txtGameId" />
       <div id="divPlayers"></div>

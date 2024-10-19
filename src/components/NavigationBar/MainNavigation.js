@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { login, logout, getCurrentUser } from "../auth"; // Correct path if auth.js is in src directory
+import { login, logout, getCurrentUser } from "../../auth"; // Correct path if auth.js is in src directory
 
 import "./MainNavigation.css";
 
@@ -26,7 +26,9 @@ const MainNavigation = () => {
             <button onClick={logout}>Logout</button>
             <Link to="/" style={styles.link}>
               <img
-                onClick={() => (window.location.href = `${FRONTEND_URL}/profile`)}
+                onClick={() =>
+                  (window.location.href = `${FRONTEND_URL}/profile`)
+                }
                 src={user.avatar}
                 alt="avatar"
                 className="avatar"
@@ -34,7 +36,14 @@ const MainNavigation = () => {
             </Link>
           </div>
         ) : (
-          <button onClick={() => login()}>Login with Google</button>
+          <button className="google-btn" onClick={() => login()}>
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/480px-Google_%22G%22_logo.svg.png"
+              alt="Google logo"
+              className="google-logo"
+            />
+            <span className="btn-text">Login with Google</span>
+          </button>
         )}
       </ul>
     </nav>

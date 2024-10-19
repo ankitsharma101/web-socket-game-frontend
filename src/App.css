@@ -38,22 +38,50 @@
 }
 
 .thumbnail-container {
-  width: 200px; /* You can set a specific width like 200px */
-  padding-top: 100%; /* This creates a square aspect ratio */
+  width: 200px; /* Fixed width */
+  height: 200px; /* Fixed height to prevent shifting */
+  margin-top: 1%;
+  margin-left: 1%;
+  border-radius: 10%;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .thumbnail-container img {
-  position: absolute;
-  top:100px;
-  left: 50%;
-  height: 200px;
-  width: auto;
-  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image fills the container without distortion */
+  transition: opacity 0.3s ease; /* Smooth transition for opacity */
 }
 
-.thumbnail-container img.landscape {
-  width: 200px;
-  height: auto;
+.thumbnail-container:hover img {
+  opacity: 0.7; /* Darken the image on hover */
+}
+
+.thumbnail-container .overlay-text {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease; /* Smooth transition for opacity */
+  pointer-events: none; /* Allows clicking through the text */
+}
+
+.thumbnail-container:hover .overlay-text {
+  opacity: 1; /* Show text on hover */
+}
+
+/* Additional styles to maintain layout stability */
+.game-wrapper {
+  width: 100%; /* Make sure it spans full width */
+  max-width: 800px; /* Maximum width to keep game centered */
+  margin: 0 auto; /* Center horizontally */
+  padding: 20px; /* Add some padding if necessary */
+  text-align: center; /* Center game elements */
 }
