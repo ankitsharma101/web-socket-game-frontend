@@ -11,13 +11,9 @@ import { Chat } from "stream-chat-react";
 
 import "./App.css";
 import MainNavigation from "./components/NavigationBar/MainNavigation";
-import Profile from "./components/Profile";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
-import TilesGame from "./games/TilesGame";
-import TicTacToeGame from "./games/TicTacToe";
 import FloatingWidget from "./games/FloatingWidget";
 import Footer from "./components/BottomNavigation/Footer";
+import AppRoutes from "./routes/routing";
 
 const BACKEND_URL =
   process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
@@ -83,12 +79,7 @@ function App() {
     <div>
       <Router>
         <MainNavigation />
-        <Routes>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/tile-game" element={<TilesGame />} />
-          <Route path="/tic-tac-toe-game" element={<TicTacToeGame />} />
-        </Routes>
+        <AppRoutes />
         <Thumbnail />
         <Footer />
       </Router>
