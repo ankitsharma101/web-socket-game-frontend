@@ -4,8 +4,8 @@ import { StreamChat } from "stream-chat";
 import Cookies from "universal-cookie";
 
 import "./TicTacToe.css";
-import Login from "../components/Login";
-import SignUp from "../components/SignUp";
+import Login from "../../pages/Login";
+import SignUp from "../../pages/SignUp";
 
 const TicTacToeGame = () => {
   const Game = ({ channel }) => {

@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Profile from "../components/Profile";
-import Login from "../components/Login";
-import SignUp from "../components/SignUp";
-import TilesGame from "../games/TilesGame";
-import TicTacToeGame from "../games/TicTacToe";
+import Profile from "../pages/Profile";
+import Login from "../pages/Login";
+import SignUp from "../pages/SignUp";
+import TilesGame from "../games/tiles-game/TilesGame";
+import TicTacToeGame from "../games/tic-tac-toe/TicTacToe";
 
 function AppRoutes() {
   return (

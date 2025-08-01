@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { login, logout, getCurrentUser } from "../../auth"; // Correct path if auth.js is in src directory
+import { login, logout, getCurrentUser } from "../auth"; // Correct path if auth.js is in src directory
 
 import "./MainNavigation.css";
 
